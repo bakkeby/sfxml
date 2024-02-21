@@ -120,14 +120,14 @@ format_xml(void)
 			}
 
 			if (buffer[i] == '"') {
-				if (!inside_single_quote) {
+				if (!inside_single_quote && prev_tag_type) {
 					inside_double_quote = !inside_double_quote;
 				}
 				goto next;
 			}
 
 			if (buffer[i] == '\'') {
-				if (!inside_double_quote) {
+				if (!inside_double_quote && prev_tag_type) {
 					inside_single_quote = !inside_single_quote;
 				}
 				goto next;
